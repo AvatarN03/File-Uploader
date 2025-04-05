@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build": "react-scripts build && mv build dist"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.779.0",

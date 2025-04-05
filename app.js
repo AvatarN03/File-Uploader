@@ -32,13 +32,13 @@ app.use(limiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/files", fileRoutes);
 
-// Serve static React files
-app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
-
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
