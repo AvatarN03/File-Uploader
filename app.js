@@ -7,6 +7,8 @@ const rateLimit = require("express-rate-limit");
 
 const authRoutes = require("./routes/authRoutes.js");
 const fileRoutes = require("./routes/fileRoutes.js");
+// Start server
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -33,7 +35,7 @@ app.use("/api/files", fileRoutes);
 // Serve static React files
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
@@ -43,6 +45,4 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-// Start server
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
